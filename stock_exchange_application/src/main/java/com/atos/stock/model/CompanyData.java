@@ -65,7 +65,8 @@ public class CompanyData implements Serializable {
 	@Column(name="INDUSTRY_SECTOR")
 	private String industrySector;
 
-	private BigDecimal isin;
+	@Column(name="ISIN")
+	private String isin;
 
 	//bi-directional many-to-one association to StockData
 	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
@@ -108,11 +109,11 @@ public class CompanyData implements Serializable {
 		this.industrySector = industrySector;
 	}
 
-	public BigDecimal getIsin() {
+	public String getIsin() {
 		return this.isin;
 	}
 
-	public void setIsin(BigDecimal isin) {
+	public void setIsin(String isin) {
 		this.isin = isin;
 	}
 
