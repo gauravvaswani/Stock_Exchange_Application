@@ -17,36 +17,39 @@ public class SeUserDAOImpl implements SeUserDAO{
 
 	@Override
 	public void addUser(SeUser user) {
-		// TODO Auto-generated method stub
+		
+		String hashPassword=DigestUtils.sha1Hex(user.getUserPassword());
+		user.setUserPassword(hashPassword);
 		Session session=MyUtil.getSession();
 		session.save(user);		
 	}
 	
-	public void checkUser(String username,String password)
+	@Override
+	public boolean checkUser(String username,String password)
 	{
 		Session session=MyUtil.getSession();
-		Query query=session.createQuery("from SeUser s where s.userName=\'"+username+"\' and s.userPassword=\'"+password+"\'");
+		String hashPassword=DigestUtils.sha1Hex(password);
+		Query query=session.createQuery("from SeUser s where s.userName=\'"+username+"\' and s.userPassword=\'"+hashPassword+"\'");
 		List li=query.list();
 		if(li.size()==1)
-			System.out.println("User Authenticated");
+			return true;
 		else
-			System.out.println("Authentication Failed");
+			return false;
 		
 	}
 	
+	@Override
 	public SeUser getUser(String username)
 	{
 		Session session=MyUtil.getSession();
 		Query query=session.createQuery("from SeUser s where s.userName=\'"+username+"\'");
 		Iterator<SeUser> it=query.iterate();
-		while(it.hasNext())
-		{
-			return it.next();
-		}
-		
-		return null;	
+		List<SeUser> li=query.list();
+		return li.get(0);
+	
 	}
 	
+	@Override
 	public boolean updateUserFullname(String username,String updatedFullName)
 	{
 		Session session=MyUtil.getSession();
@@ -57,6 +60,7 @@ public class SeUserDAOImpl implements SeUserDAO{
 		return true;	
 	}
 	
+	@Override
 	public boolean deleteUser(String username)
 	{	
 		Session session=MyUtil.getSession();
@@ -65,15 +69,17 @@ public class SeUserDAOImpl implements SeUserDAO{
 		return true;
 	}
 	
+	@Override
 	public void setTempPass(String username)
 	{
 		Session session=MyUtil.getSession();
 		String hash=DigestUtils.sha1Hex(username+"-"+new Date().getTime());
-		//System.out.println(hash);
 		Query query=session.createQuery("update SeUser set tempPass=\'"+hash+"\' where userName=\'"+username+"\'");
 		query.executeUpdate();
 				
 	}
+	
+	@Override
 	public String getTempPass(String username)
 	{
 		Session session=MyUtil.getSession();
@@ -91,7 +97,23 @@ public class SeUserDAOImpl implements SeUserDAO{
 		Query query=session.createQuery("from SeUser where tempPass=\'"+tempPass+"\'");
 		li=query.list();
 		SeUser s=li.get(0);	
+		query=session.createQuery("update SeUser set tempPass='' where userName=\'"+s.getUserName()+"\'");
+		query.executeUpdate();
+		
 		return s;
 	}
+
+	@Override
+	public boolean changePassword(String username, String password) {
+		
+		Session session=MyUtil.getSession();
+		String hashPassword=DigestUtils.sha1Hex(password);
+		Query query=session.createQuery("update SeUser set userPassword=\'"+hashPassword+"\' where userName=\'"+username+"\'");
+		int i=query.executeUpdate();
+		System.out.println(i);
+		return true;
+	}
+	
+	
 
 }
