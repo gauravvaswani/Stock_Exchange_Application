@@ -2,8 +2,7 @@ package com.atos.stock.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Timestamp;
-
+import java.util.Date;
 
 
 @Entity
@@ -24,7 +23,7 @@ public class FileReference implements Serializable {
 	private String fileName;
 
 	@Column(name="FILE_PROCESSING_DATA")
-	private Timestamp fileProcessingData;
+	private Date fileProcessingData;
 
 	public FileReference() {
 	}
@@ -53,11 +52,11 @@ public class FileReference implements Serializable {
 		this.fileName = fileName;
 	}
 
-	public Timestamp getFileProcessingData() {
+	public Date getFileProcessingData() {
 		return this.fileProcessingData;
 	}
 
-	public void setFileProcessingData(Timestamp fileProcessingData) {
+	public void setFileProcessingData(Date fileProcessingData) {
 		this.fileProcessingData = fileProcessingData;
 	}
 
