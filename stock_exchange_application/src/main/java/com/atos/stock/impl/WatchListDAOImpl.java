@@ -23,7 +23,7 @@ public class WatchListDAOImpl implements WatchListDAO {
 	@Override
 	public void deleteWatchList(long watchlistId) {
 		Session session = MyUtil.getSession();
-		Query query=session.createQuery("from WatchList w where w.WATCHLIST_ID=\'"+watchlistId+"\'");
+		Query query=session.createQuery("from WatchList w where w.watchlistId="+watchlistId);
 		Iterator<WatchList> it = query.iterate();
 		while(it.hasNext())
 		{
@@ -34,5 +34,33 @@ public class WatchListDAOImpl implements WatchListDAO {
 
 	
 
+	}
+
+	@Override
+	public void deleteWatchList(SeUser user) {
+		// TODO Auto-generated method stub
+		
+		Session session=MyUtil.getSession();
+		Query query=session.createQuery("from WatchList where seUser="+user.getUserId());
+		Iterator<WatchList> li=query.iterate();
+		while(li.hasNext())
+		{
+			session.delete(li.next());
+		}
+		
+	}
+
+	@Override
+	public void deleteWatchList(StockData sd) {
+		// TODO Auto-generated method stub
+		
+		Session session=MyUtil.getSession();
+		Query query=session.createQuery("from WatchList where stockData="+sd.getStockId());
+		Iterator<WatchList> li=query.iterate();
+		while(li.hasNext())
+		{
+			session.delete(li.next());
+		}
+		
 	}
 }
