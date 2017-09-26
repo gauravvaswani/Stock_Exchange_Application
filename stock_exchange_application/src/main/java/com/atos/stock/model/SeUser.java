@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * The persistent class for the SE_USER database table.
+ * 
+ */
 @Entity
 @Table(name="SE_USER")
 @NamedQuery(name="SeUser.findAll", query="SELECT s FROM SeUser s")
@@ -14,6 +18,8 @@ public class SeUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name = "SequenceIdGenerator", sequenceName = "USER_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceIdGenerator")
 	@Column(name="USER_ID")
 	private long userId;
 
@@ -54,13 +60,17 @@ public class SeUser implements Serializable {
 		this.tempPass = tempPass;
 	}
 
+	//bi-directional many-to-one association to UserPortfolio
 	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
-
+//	@JoinTable(name="User_Portfolio",joinColumns=@JoinColumn(name="user_Id"),
+//	inverseJoinColumns=@JoinColumn(name="idPortfolio"))
 	private List<UserPortfolio> userPortfolios=new ArrayList<>();
 
 
+	//bi-directional many-to-one association to WatchList
 	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
-
+//	@JoinTable(name="Watch_List",joinColumns=@JoinColumn(name="user_Id"),
+//	inverseJoinColumns=@JoinColumn(name="id"))
 	private List<WatchList> watchLists=new ArrayList<>();
 
 	public SeUser() {

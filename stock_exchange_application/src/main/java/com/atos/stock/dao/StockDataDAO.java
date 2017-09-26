@@ -1,8 +1,8 @@
 package com.atos.stock.dao;
 
-import java.util.List;
 
-import com.atos.stock.model.CompanyData;
+import java.util.*;
+import com.atos.stock.model.*;
 import com.atos.stock.model.StockData;
 
 public interface StockDataDAO {

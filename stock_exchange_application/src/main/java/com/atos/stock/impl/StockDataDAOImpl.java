@@ -9,6 +9,9 @@ import org.hibernate.Session;
 
 import com.atos.stock.dao.*;
 import com.atos.stock.model.CompanyData;
+import org.hibernate.Session;
+
+import com.atos.stock.dao.*;
 import com.atos.stock.model.StockData;
 import com.atos.stock.utils.MyUtil;
 public class StockDataDAOImpl implements StockDataDAO{
