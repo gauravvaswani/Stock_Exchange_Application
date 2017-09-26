@@ -1,13 +1,14 @@
 package com.atos.stock.impl;
 
-import java.sql.Timestamp;
+
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
-
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
 import com.atos.stock.dao.FileReferenceDAO;
 import com.atos.stock.model.FileReference;
 import com.atos.stock.utils.MyUtil;
@@ -19,65 +20,22 @@ public class FileReferenceDAOImpl implements FileReferenceDAO {
 		
 		Session session=MyUtil.getSession();
 		session.save(fr);
-		
-
+	
 	}
+	
 	@Override
 	public byte[] readFileReference(byte[] data) {
-	//	 
-		return data;
-		// TODO Auto-generated method stub
-		
-	
-	}
-	
-	@Override
-	public boolean deleteFileReference(long id) {
-		
-		Session session ;
-		session = MyUtil.getSession();
-		FileReference obj =(FileReference) session.load(FileReference.class, id);
-		session.delete(obj);
-		session.flush();
-		return true;
-		
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public boolean deleteFileReferenceDate(Timestamp dt) {
-		// TODO Auto-generated method stub
-		
-		Session session ;
-		session = MyUtil.getSession();
-		Query q=session.createQuery("from FileReference where fileProcessingData='"+dt+"'");
-		Iterator<FileReference> it=q.iterate();
-		while(it.hasNext())
+		 
+		for(byte b:data)
 		{
-			session.delete(it.next());
-		}
-//		FileReference obj =(FileReference) session.load(FileReference.class, dt);
-//		session.delete(obj);
-//		session.flush();
-		return true;
 		
-}
+	      	System.out.print((char)b);
+	    }
 
-	
-	/*
-
-	@Override
-	public byte[] readFileReference(byte[] data) {
-	//	 for(byte b:data){
-	  //      	System.out.println((char)b);
-	        	
-	    //    }
 		return data;
-		// TODO Auto-generated method stub
 		
-	
 	}
-
+	
 	@Override
 	public boolean deleteFileReference(long id) {
 		
@@ -87,25 +45,19 @@ public class FileReferenceDAOImpl implements FileReferenceDAO {
 		session.delete(obj);
 		session.flush();
 		return true;
-		
-		// TODO Auto-generated method stub
+	
 		
 	}
-
+	
 	@Override
-	public boolean deleteFileReferenceDate(Timestamp dt) {
-		// TODO Auto-generated method stub
-		
+	public FileReference getFile(long id)
+	{
 		Session session ;
 		session = MyUtil.getSession();
-		FileReference obj =(FileReference) session.load(FileReference.class, dt);
-		session.delete(obj);
-		session.flush();
-		return true;
-		
-}
-		
-	
-*/
+		Query q=session.createQuery("from FileReference where fileId='"+id+"'");
+		List<FileReference> li=q.list();
+		return li.get(0);
+
+	}
 }
 
