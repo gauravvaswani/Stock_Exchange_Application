@@ -1,0 +1,179 @@
+.header-bg{
+	background-color:#eee; 
+	box-shadow:2px 1px 1px 2px #ccc;
+}
+
+.header-brand{
+	background-color:transparent; 
+	height:120px;
+}
+
+.foot-list{
+	padding-top:24px;
+	padding-bottom:24px;
+}
+
+.foot-listing{
+	list-style:none;
+	font-size:13px;
+	padding:3px; 
+	text-align:justify;
+}
+
+.foot-listing-social{
+	list-style:none;
+	font-size:36px;
+	padding:10px;
+	
+}
+
+.foot-listing-social-link {
+	color:#ccc;
+}
+
+.foot-listing-social-link :visited{
+	color:#ccc;
+}
+
+.foot-listing-social-link :active{
+	color:#ccc;
+}
+
+.foot-listing-social-link :hover{
+	color:#fff;
+}
+
+.footer-bg{
+	background-color:#303030; 
+	height:50px;
+}
+
+.footer-content{
+	background-color:#303030; 
+	height:50px;
+}
+
+.footer-copyright{
+	color:#fff; 
+	font-size:12px;
+	line-height:48px;
+}
+
+.footer-menu{
+	color:#ccc; 
+	font-size:12px;
+	line-height:48px;
+}
+
+.foot-link, .foot-link:active, :visited{
+	color:#ccc; 
+	text-decoration:none;
+}
+
+.foot-link:hover{
+	color:#fff;
+	text-decoration:none;
+}
+
+.body-wrap{
+	min-height:300px;
+	padding-top:40px;
+	padding-bottom:40px;
+}
+
+.add-to{
+	color:#000; 
+	font-weight:bold; 
+	background-color:#ccc; 
+	padding:6px; 
+	border-radius:12px; 
+	border:2px solid #888; 
+	text-decoration:none;
+}
+
+.add-to:hover{
+	color:#fff;
+	text-decoration:none;
+	background-color:#ccc; 
+	border:2px solid #888;
+}
+
+.add-to:active{
+	color:#000;
+	text-decoration:none;
+	background-color:#ccc; 
+	border:2px solid #888;
+}
+
+.add-to:visited{
+	color:#000;
+	text-decoration:none;
+	background-color:#ccc; 
+	border:2px solid #888;
+}
+
+.add-to:focus{
+	color:#000;
+	text-decoration:none;
+	background-color:#ccc; 
+	border:2px solid #888;
+}
+
+
+.market{
+	border:0px; 
+	border-bottom:1px solid #eee; 
+	font-size:16px;
+	font-weight:500;
+}
+.market :focus {
+	outline: none !important;
+	border:1px solid green;
+}
+.market :active {
+	
+	border:1px solid green;
+}
+
+.nav-tabs{
+	font-size:14px;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+	color: #000;
+	background-color: #fff;
+	border-color: #ddd #ddd #fff;
+	font-size:14px;
+	
+}
+
+.in-nav{
+	color:#000;
+}
+
+.in-nav:hover{
+	color:#888;
+}
+
+.in-nav-list > .active{
+	font-weight:700;
+}
+
+.bg-success{
+	background-color:rgba(40, 167, 69, 0.75) !important;
+}
+
+.bg-danger{
+	background-color:rgba(235, 51, 21, 0.75) !important;
+}
+
+@media (max-width: 767px) {
+	#left1 {
+		border-left: 0px solid white !important;
+
+	}
+	#right1 {
+		border-bottom: 0px;
+	}
+}
+			
+			
